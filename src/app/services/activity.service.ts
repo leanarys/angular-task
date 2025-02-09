@@ -1,10 +1,10 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { Quiz } from '../models/quiz.model';
+import { Injectable } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
+import { BehaviorSubject, Observable } from "rxjs";
+import { Quiz } from "../models/quiz.model";
 
 @Injectable({
-  providedIn: 'root', // Makes it available app-wide
+  providedIn: "root", // Makes it available app-wide
 })
 export class ActivityService {
   private activity = new BehaviorSubject<any>(null);
@@ -15,12 +15,16 @@ export class ActivityService {
   fetchActivityData(): void {
     if (!this.activity.value) {
       // 'https://s3.eu-west-2.amazonaws.com/interview.mock.data/payload.json'
-      this.http.get<Quiz>('../../assets/payload.json').subscribe((data) => {
-        if (data?.activities) {
-          data.activities = data.activities.sort((a, b) => a.order - b.order);
-        }
-        this.activity.next(data);
-      });
+      this.http
+        .get<Quiz>(
+          "https://leanarys-bucket.s3.us-east-1.amazonaws.com/mock-data/error-find-payload.json"
+        )
+        .subscribe((data) => {
+          if (data?.activities) {
+            data.activities = data.activities.sort((a, b) => a.order - b.order);
+          }
+          this.activity.next(data);
+        });
     }
   }
 
