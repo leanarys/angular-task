@@ -1,0 +1,47 @@
+div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn1 0.3s ease-in-out forwards;
+}
+
+@keyframes fadeIn1 {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+h1 {
+  font-size: 4em;
+  color: #999;
+}
+
+a {
+  text-decoration: none;
+}
+
+p {
+  color: var(--bright-blue);
+  font-size: 1em;
+  font-weight: 600;
+  padding: 10px;
+  letter-spacing: 2px;
+  border-radius: 4px;
+  background: rgba(0, 0, 0, 0.646);
+  color: var(--bg-items);
+  cursor: pointer;
+  transition: 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+p:visited {
+  color: var(--bright-blue);
+}
+
+p:hover {
+  background-color: var(--bright-blue);
+  letter-spacing: 4px;
+  transition: 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+}

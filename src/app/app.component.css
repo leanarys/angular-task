@@ -1,0 +1,15 @@
+:host {
+  --bright-blue: #2699fb;
+  --bg-white: #ffffff;
+  --bg-items: #fcfdff;
+  --border-items: #ebf5fe;
+  --text-disabled: #cdcdcd;
+  --accordion-hover: rgba(30, 136, 229, 0.1);
+  --cupa-violet: #3c1366;
+  --cupa-teal: #3be0d0;
+  --cupa-lavender: #d6acfe;
+  font-family: Arial, Helvetica, sans-serif;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

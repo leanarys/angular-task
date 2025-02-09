@@ -1,0 +1,97 @@
+<app-display-card
+  [smallHeader]="smallHeader"
+  [mainHeader]="mainHeader"
+  [footer]="footer"
+  directory="/home"
+>
+  <!-- Content Start -->
+  <div class="score-container">
+    <div
+      *ngIf="!activityResults?.is_multi_round; else multiRound"
+      class="single-round-results"
+    >
+      <div
+        *ngFor="let item of activityResults?.questions; let x = index"
+        class="result-item"
+        (click)="toggleFeedback(x)"
+      >
+        <span class="question">Q{{ item.order }}</span>
+        <span
+          class="answer"
+          [ngClass]="{
+            correct: item.is_correct == item.user_answer,
+            incorrect: item.is_correct != item.user_answer
+          }"
+        >
+          {{ item.is_correct == item.user_answer ? "CORRECT" : "FALSE" }}
+        </span>
+
+        <div *ngIf="openQuestionIndex === x" class="feedback-details">
+          <div class="feedback-item">
+            <div class="feedback-icon">
+              <span class="icon">❌</span>
+              <strong>Wrong:</strong>
+            </div>
+            <p [innerHTML]="item.stimulus | boldAsterisk"></p>
+          </div>
+          <div class="feedback-item fb-correct">
+            <div class="feedback-icon">
+              <span class="icon">✅</span>
+              <strong>Correct:</strong>
+            </div>
+            <p [innerHTML]="item.feedback | boldAsterisk"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Single-round scenario -->
+    <ng-template #multiRound>
+      <div
+        *ngFor="let round of activityResults?.rounds; let x = index"
+        class="multi-round-results"
+      >
+        <div class="round-header">{{ round.round_title | uppercase }}</div>
+        <div class="round-container">
+          <div
+            *ngFor="let item of round.questions; let y = index"
+            class="result-item"
+            (click)="toggleFeedbackByRound(x, y)"
+          >
+            <span class="question">Q{{ item.order }}</span>
+            <span
+              class="answer"
+              [ngClass]="{
+                correct: item.is_correct == item.user_answer,
+                incorrect: item.is_correct != item.user_answer
+              }"
+            >
+              {{ item.is_correct == item.user_answer ? "CORRECT" : "FALSE" }}
+            </span>
+
+            <div
+              *ngIf="openRoundIndex === x && openQuestionIndex === y"
+              class="feedback-details"
+            >
+              <div class="feedback-item">
+                <div class="feedback-icon">
+                  <span class="icon">❌</span>
+                  <strong>Wrong:</strong>
+                </div>
+                <p [innerHTML]="item.stimulus | boldAsterisk"></p>
+              </div>
+              <div class="feedback-item fb-correct">
+                <div class="feedback-icon">
+                  <span class="icon">✅</span>
+                  <strong>Correct:</strong>
+                </div>
+                <p [innerHTML]="item.feedback | boldAsterisk"></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+  </div>
+  <!-- Content End -->
+</app-display-card>
