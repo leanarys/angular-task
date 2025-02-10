@@ -1,32 +1,32 @@
-import { Routes } from '@angular/router';
-import { HomeComponent } from './app/pages/home/home.component';
-import { ActivityComponent } from './app/pages/activity/activity.component';
-import { ScoreComponent } from './app/pages/score/score.component';
-import { PageNotFoundComponent } from './app/pages/page-not-found/page-not-found.component';
+import { Routes } from "@angular/router";
+import { HomeComponent } from "./pages/home/home.component";
+import { ActivityComponent } from "./pages/activity/activity.component";
+import { ScoreComponent } from "./pages/score/score.component";
+import { PageNotFoundComponent } from "./pages/page-not-found/page-not-found.component";
 
 export const routes: Routes = [
   {
-    path: '',
+    path: "",
     component: HomeComponent,
   },
   {
-    path: 'home',
+    path: "home",
     component: HomeComponent,
   },
   {
-    path: 'activity/:name',
+    path: "activity/:name",
     component: ActivityComponent,
   },
   {
-    path: 'score',
+    path: "score",
     component: ScoreComponent,
   },
   {
-    path: '**',
+    path: "**",
     component: PageNotFoundComponent,
   },
   {
-    path: 'page-not-found',
+    path: "page-not-found",
     component: PageNotFoundComponent,
   },
 ];
