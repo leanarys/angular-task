@@ -46,9 +46,6 @@
   }
 }
 
-.activity-multi {
-}
-
 .activity-headers {
   padding: 0px 40px;
   display: inline-block;
@@ -73,6 +70,7 @@
   padding: 20px 35px;
   text-wrap: wrap;
 }
+
 .activity-btns {
   display: flex;
   align-items: center;

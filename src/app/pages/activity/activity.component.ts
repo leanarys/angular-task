@@ -1,11 +1,6 @@
 import { Component } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
-import {
-  Activity,
-  ActivityResults,
-  Question,
-  Quiz,
-} from "../../models/quiz.model";
+import { Activity, Question, Quiz } from "../../interface/quiz.interface";
 import { ActivityService } from "../../services/activity.service";
 import { CommonModule } from "@angular/common";
 import { BehaviorSubject } from "rxjs";
@@ -64,9 +59,16 @@ export class ActivityComponent {
     });
   }
 
+  /**
+   * Checks if the activity has multiple rounds.
+   * Activity is considered to have multiple rounds if the first question object
+   * contains either a "round_title" or a "questions" property.
+   */
   get hasMultipleRounds(): boolean {
     return (
+      // Check if "round_title" exists in the first question object
       "round_title" in (this.activity.questions[0] || {}) ||
+      // Check if "questions" exists in the first question object
       "questions" in (this.activity.questions[0] || {})
     );
   }
@@ -135,6 +137,9 @@ export class ActivityComponent {
     }
   }
 
+  /**
+   * Resets the State
+   */
   resetState() {
     this.userResponses = [];
     this.currentQuestionIndex = 0;

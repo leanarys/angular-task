@@ -1,7 +1,11 @@
 import { CommonModule } from "@angular/common";
 import { Component } from "@angular/core";
 import { ScoreService } from "../../services/score.service";
-import { ActivityResults, Question, Round } from "../../models/quiz.model";
+import {
+  ActivityResults,
+  Question,
+  Round,
+} from "../../interface/quiz.interface";
 import { Subscription } from "rxjs";
 import { DisplayCardComponent } from "../../components/display-card/display-card.component";
 import { Router } from "@angular/router";
@@ -20,14 +24,21 @@ export class ScoreComponent {
   footer = "HOME";
   activityResults: ActivityResults;
   scoreSubscription!: Subscription;
+  openQuestionIndex: number | null = null;
+  openRoundIndex: number | null = null;
 
   constructor(private scoreService: ScoreService, private router: Router) {}
+
   ngOnInit() {
+    this.getActivityResults();
+  }
+
+  getActivityResults(): void {
     this.scoreSubscription = this.scoreService
       .getUserAnswers()
       .subscribe((answers) => {
         if (!answers) {
-          this.router.navigate(["/home"]);
+          this.router.navigate(["/"]);
         }
         this.activityResults = answers;
         this.smallHeader = this.activityResults?.activity_name;
@@ -57,23 +68,18 @@ export class ScoreComponent {
       });
   }
 
-  openQuestionIndex: number | null = null;
   toggleFeedback(index: number) {
     console.log(index);
     this.openQuestionIndex = this.openQuestionIndex === index ? null : index;
   }
-  openRoundIndex: number | null = null;
-  toggleFeedbackByRound(roundIndex: number, questionIndex: number) {
-    if (
+
+  toggleFeedbackByRound(roundIndex: number, questionIndex: number): void {
+    const isSameSelection =
       this.openRoundIndex === roundIndex &&
-      this.openQuestionIndex === questionIndex
-    ) {
-      this.openRoundIndex = null;
-      this.openQuestionIndex = null;
-    } else {
-      this.openRoundIndex = roundIndex;
-      this.openQuestionIndex = questionIndex;
-    }
+      this.openQuestionIndex === questionIndex;
+
+    this.openRoundIndex = isSameSelection ? null : roundIndex;
+    this.openQuestionIndex = isSameSelection ? null : questionIndex;
   }
 
   ngOnDestroy() {

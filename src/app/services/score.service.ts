@@ -1,9 +1,9 @@
-import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { ActivityResults } from '../models/quiz.model';
+import { Injectable } from "@angular/core";
+import { BehaviorSubject, Observable } from "rxjs";
+import { ActivityResults } from "../interface/quiz.interface";
 
 @Injectable({
-  providedIn: 'root', // Makes it available app-wide
+  providedIn: "root", // Makes it available app-wide
 })
 export class ScoreService {
   private activity = new BehaviorSubject<any>(null);
