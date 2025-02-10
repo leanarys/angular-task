@@ -1,0 +1,19 @@
+<main class="main">
+  <div class="card-content">
+    <div class="header">
+      <span>{{ smallHeader | uppercase }}</span>
+      <h1>{{ mainHeader }}</h1>
+    </div>
+    <div class="dynamic-content">
+      <ng-content></ng-content>
+      <div
+        *ngIf="footer"
+        class="result"
+        [ngClass]="{ pointer: !!directory }"
+        (click)="directory ? navigateTo(directory) : null"
+      >
+        {{ footer | uppercase }}
+      </div>
+    </div>
+  </div>
+</main>

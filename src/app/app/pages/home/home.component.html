@@ -1,9 +1,0 @@
-<app-display-card [smallHeader]="smallHeader" [mainHeader]="activityData?.name"[footer]="footer">
-  <div class="accordion">
-    <div *ngFor="let activity of activityData?.activities" class="activity">
-      <button (click)="navigateToActivity(activity)" class="accordion-item" [disabled]="!activity.questions">
-        {{ activity.activity_name | uppercase }}
-      </button>
-    </div>
-  </div>
-</app-display-card>
