@@ -6,22 +6,22 @@ import { ActivityResults } from "../interface/quiz.interface";
   providedIn: "root", // Makes it available app-wide
 })
 export class ScoreService {
-  private activity = new BehaviorSubject<any>(null);
+  private userAnswersSubject = new BehaviorSubject<ActivityResults | null>(
+    null
+  );
 
-  // Fetch from API only if not already loaded
+  /** Set or update user answers */
   setUserAnswers(answers: ActivityResults): void {
-    if (!this.activity.value) {
-      this.activity.next(answers);
-    }
+    this.userAnswersSubject.next(answers);
   }
 
-  // Get stored data
+  /** Get stored data as Observable */
   getUserAnswers(): Observable<ActivityResults | null> {
-    return this.activity.asObservable();
+    return this.userAnswersSubject.asObservable();
   }
 
-  // Reset
-  resetScoreService() {
-    this.activity = new BehaviorSubject<any>(null);
+  /** Reset stored answers */
+  resetScoreService(): void {
+    this.userAnswersSubject.next(null);
   }
 }

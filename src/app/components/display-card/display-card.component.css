@@ -1,3 +1,4 @@
+/* Card Content */
 .card-content {
   min-width: 250px;
 }
@@ -11,6 +12,7 @@
   max-width: 440px;
 }
 
+/* Fade-in animation for smooth appearance effect */
 @keyframes fadeIn1 {
   from {
     opacity: 0;
@@ -19,7 +21,8 @@
     opacity: 1;
   }
 }
-/* Header */
+
+/* Header Section*/
 .header {
   display: flex;
   flex-direction: column;
@@ -64,6 +67,7 @@
   border: 1px solid var(--border-items);
 }
 
+/* Disabled hover */
 .accordion-item:hover {
   background-color: var(--accordion-hover);
 }

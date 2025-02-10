@@ -10,6 +10,7 @@ import { Router } from "@angular/router";
   styleUrl: "./display-card.component.css",
 })
 export class DisplayCardComponent {
+  // Texts displayed on the card
   @Input() smallHeader: string = "";
   @Input() mainHeader: string = "";
   @Input() footer: string = "";
@@ -17,6 +18,11 @@ export class DisplayCardComponent {
 
   constructor(private router: Router) {}
 
+  /**
+   * Navigates to the specified directory.
+   * Ensures the directory is properly formatted before navigating.
+   * @param directory - The target route path.
+   */
   navigateTo(directory: string): void {
     if (directory?.trim()) {
       this.router.navigateByUrl(

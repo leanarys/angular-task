@@ -14,7 +14,7 @@ export class ActivityService {
 
   constructor(private http: HttpClient) {}
 
-  // Fetch from API only if not already loaded
+  /** Fetch from API only if not already loaded */
   fetchActivityData(): void {
     if (!this.activity.getValue()) {
       this.http
@@ -37,7 +37,10 @@ export class ActivityService {
     }
   }
 
-  // Get stored data as Observable
+  /**
+   * Get stored data as Observable
+   * @returns observable
+   */
   getActivityData(): Observable<Quiz | null> {
     return this.activity.asObservable();
   }
